@@ -228,8 +228,8 @@ export const APPLICATION = {
 // ============================================
 export const FORM_CONFIG = {
   // Your Google Apps Script Web App URL
-  scriptUrl: "https://script.google.com/macros/s/AKfycbysOPnG053ggpsdygRv8vuuNVAzGGCS9geKc9UGAmYt9_HGMnGsMEIz--mPAKTVYpEHtQ/exec",
+  scriptUrl: "https://script.google.com/macros/s/AKfycbwgLd2T2EwHNqwOExuc9iXcx3yu4WeVABXX0h0tDc_U5Yce9FipJjtTAxIP2EAgiifbTA/exec",
   
   // Fallback email (used if script URL not set)
-  fallbackEmail: "xoxoksh05@gmail.com",
+  fallbackEmail: "jameskim@kimconsultant.net",
 };
