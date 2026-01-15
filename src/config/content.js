@@ -9,8 +9,8 @@
 // ============================================
 export const INTRO = {
   greeting: "Hey, I'm James 👋",
-  subtext: "I build things, go to the gym, drink coffee, and overthink sometimes.",
-  note: "This page is just for fun.",
+  subtext: "I build things, go to the gym, drink coffee.",
+  note: "This page is all about me.",
 };
 
 // ============================================
@@ -20,25 +20,25 @@ export const SOCIALS = [
   {
     id: "github",
     label: "GitHub",
-    href: "https://github.com/YOUR_USERNAME",
+    href: "https://github.com/HamesInFlames",
     icon: "github",
   },
   {
     id: "linkedin",
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/YOUR_USERNAME/",
+    href: "https://www.linkedin.com/in/seonghyunkim",
     icon: "linkedin",
   },
   {
     id: "website",
     label: "Website",
-    href: "https://kimconsultant.net",
+    href: "https://www.kimconsultant.net",
     icon: "globe",
   },
   {
     id: "spotify",
     label: "My Playlist",
-    href: "https://open.spotify.com/playlist/YOUR_PLAYLIST_ID",
+    href: "https://open.spotify.com/playlist/3fjuZ4ww6UGZ3x7jUj4c3q",
     icon: "spotify",
   },
   {
@@ -50,7 +50,7 @@ export const SOCIALS = [
   {
     id: "phone",
     label: "Call / Text",
-    href: "tel:+1-289-894-7288",
+    href: "tel:+12898947288",
     icon: "phone",
   },
 ];
