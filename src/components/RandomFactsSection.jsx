@@ -43,8 +43,8 @@ export default function RandomFactsSection() {
               <ul className="space-y-4">
                 {RANDOM_FACTS.items.map((item, index) => (
                   <li key={index} className="flex items-start gap-3 text-gray-600">
-                    <span className="text-gray-300 mt-0.5">•</span>
-                    <span>{item}</span>
+                    <span className="text-xl">{item.emoji}</span>
+                    <span>{item.text}</span>
                   </li>
                 ))}
               </ul>

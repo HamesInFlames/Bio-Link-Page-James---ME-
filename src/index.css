@@ -135,6 +135,14 @@ body {
   opacity: 1;
 }
 
+.tooltip.copied {
+  background: #22c55e;
+}
+
+.tooltip.copied::after {
+  border-top-color: #22c55e;
+}
+
 /* Social icon button */
 .social-btn {
   width: 48px;
@@ -366,3 +374,62 @@ textarea.input {
 .success-pop {
   animation: successPop 0.4s ease-out;
 }
+
+/* VERY explosion animation */
+@keyframes veryShake {
+  0%, 100% { transform: translateX(0) scale(1); }
+  10% { transform: translateX(-3px) rotate(-2deg) scale(1.1); }
+  20% { transform: translateX(3px) rotate(2deg) scale(1.15); }
+  30% { transform: translateX(-3px) rotate(-1deg) scale(1.2); }
+  40% { transform: translateX(3px) rotate(1deg) scale(1.15); }
+  50% { transform: translateX(-2px) scale(1.1); }
+  60% { transform: translateX(2px) scale(1.05); }
+  70% { transform: translateX(-1px) scale(1); }
+}
+
+@keyframes particleExplode {
+  0% { 
+    opacity: 1; 
+    transform: translate(0, 0) scale(1);
+  }
+  100% { 
+    opacity: 0; 
+    transform: translate(var(--tx), var(--ty)) scale(0);
+  }
+}
+
+.very-text {
+  display: inline-block;
+  font-weight: 700;
+  color: #ef4444;
+  position: relative;
+  cursor: pointer;
+  animation: veryShake 0.6s ease-out;
+  animation-delay: 0.3s;
+}
+
+.very-text:hover {
+  animation: veryShake 0.5s ease-out;
+}
+
+.very-container {
+  display: inline;
+  position: relative;
+}
+
+.explosion-particle {
+  position: absolute;
+  font-size: 12px;
+  pointer-events: none;
+  animation: particleExplode 0.8s ease-out forwards;
+  z-index: 10;
+}
+
+.explosion-particle:nth-child(1) { --tx: -20px; --ty: -25px; animation-delay: 0.35s; }
+.explosion-particle:nth-child(2) { --tx: 20px; --ty: -20px; animation-delay: 0.4s; }
+.explosion-particle:nth-child(3) { --tx: -25px; --ty: 5px; animation-delay: 0.45s; }
+.explosion-particle:nth-child(4) { --tx: 25px; --ty: 0px; animation-delay: 0.5s; }
+.explosion-particle:nth-child(5) { --tx: -15px; --ty: 20px; animation-delay: 0.55s; }
+.explosion-particle:nth-child(6) { --tx: 18px; --ty: 18px; animation-delay: 0.6s; }
+.explosion-particle:nth-child(7) { --tx: 0px; --ty: -30px; animation-delay: 0.42s; }
+.explosion-particle:nth-child(8) { --tx: -30px; --ty: -10px; animation-delay: 0.48s; }

@@ -2,6 +2,39 @@ import React, { useState } from 'react';
 import { ABOUT } from '../config/content';
 import { Icons } from './Icons';
 
+// Component to render text with animated "VERY"
+function AnimatedText({ text }) {
+  const [showParticles, setShowParticles] = useState(true);
+  
+  // Check if text contains "VERY"
+  if (!text.includes('VERY')) {
+    return <span>{text}</span>;
+  }
+
+  const particles = ['💥', '⚡', '🔥', '✨', '💫', '🌟', '💢', '😤'];
+  
+  // Split text around "VERY"
+  const parts = text.split('VERY');
+  
+  const handleClick = () => {
+    setShowParticles(false);
+    setTimeout(() => setShowParticles(true), 100);
+  };
+  
+  return (
+    <span>
+      {parts[0]}
+      <span className="very-container" onClick={handleClick}>
+        <span className="very-text">VERY</span>
+        {showParticles && particles.map((emoji, i) => (
+          <span key={i} className="explosion-particle">{emoji}</span>
+        ))}
+      </span>
+      {parts[1]}
+    </span>
+  );
+}
+
 export default function AboutCard() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -43,8 +76,8 @@ export default function AboutCard() {
               <ul className="space-y-4">
                 {ABOUT.content.map((item, index) => (
                   <li key={index} className="flex items-start gap-3 text-gray-600">
-                    <span className="text-gray-300 mt-0.5">•</span>
-                    <span>{item}</span>
+                    <span className="text-xl">{item.emoji}</span>
+                    <AnimatedText text={item.text} />
                   </li>
                 ))}
               </ul>

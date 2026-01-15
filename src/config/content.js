@@ -62,10 +62,10 @@ export const ABOUT = {
   buttonLabel: "A little about me",
   title: "A little about me",
   content: [
-    "I'm pretty straightforward and honest.",
-    "I take work seriously, but people matter more.",
-    "Old-soul energy in a younger body.",
-    "Still figuring things out.",
+    { emoji: "😤", text: "I'm VERY straightforward and honest." },
+    { emoji: "💼", text: "I take work seriously, maybe too seriously." },
+    { emoji: "🙅", text: "I dont like to sugar coat things, I'm not a people pleaser." },
+    { emoji: "🧩", text: "I am almost done figuring things out." },
   ],
 };
 
@@ -77,7 +77,7 @@ export const CURRENTLY = {
   items: [
     { emoji: "🔨", text: "Building websites for small businesses" },
     { emoji: "📚", text: "Reading more books this year" },
-    { emoji: "🎯", text: "Trying to be more consistent" },
+    { emoji: "🎯", text: "Trying to be more consistent with my goals, and be less lazy" },
   ],
 };
 
@@ -87,14 +87,16 @@ export const CURRENTLY = {
 export const INTERESTS = {
   title: "Things I'm usually into",
   items: [
-    { emoji: "🏋️", label: "Gym", note: "keeps me sane" },
-    { emoji: "💻", label: "Building things", note: "websites, ideas, random projects" },
-    { emoji: "☕", label: "Cafés", note: "always down to try a new one" },
+    { emoji: "🏋️", label: "Gym", note: "keeps me sane, looking good, and strong" },
+    { emoji: "💻", label: "Building things", note: "websites, ideas, random projects, and my own business" },
+    { emoji: "💰", label: "Money", note: "I'm not crazy rich, but I'm getting there" },
+    { emoji: "🍔", label: "Food", note: "I'm a foodie, I love to cook and eat, or try new restaurants" },
+    { emoji: "☕", label: "Cafés", note: "always down to try a new one, since I work at a cafe" },
     { emoji: "🎮", label: "Gaming", note: "when I have time" },
     { emoji: "🎧", label: "Music", note: "depends on the mood" },
     { emoji: "🧠", label: "Learning", note: "books, rabbit holes, experiments" },
   ],
-  footer: "If we overlap on any of these, that's already a win.",
+  footer: "Give me a topic and I can talk about it for hours.",
 };
 
 // ============================================
@@ -103,10 +105,11 @@ export const INTERESTS = {
 export const RANDOM_FACTS = {
   title: "Random things about me",
   items: [
-    "I'm a morning person (most days)",
-    "I overthink texts sometimes",
-    "I like deep conversations more than small talk",
-    "I'll probably remember your coffee order",
+    { emoji: "🦉", text: "I'm a Night Owl (most nights)" },
+    { emoji: "🤷", text: "I underthink sometimes" },
+    { emoji: "💬", text: "I like deep conversations more than small talk" },
+    { emoji: "☕", text: "I'll probably remember your coffee order" },
+    { emoji: "🤓", text: "I'm a bit of a nerd" },
   ],
 };
 
@@ -124,7 +127,7 @@ export const APPLICATION = {
   ],
 
   // Girlfriend theme switch message
-  girlfriendModeMessage: "Okay… switching to love mode 💗",
+  girlfriendModeMessage: "Okay… switching the mode 💗",
   girlfriendIntro: "This is mostly a joke… but also kind of not.",
 
   // Friend application
