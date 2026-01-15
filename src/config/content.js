@@ -114,6 +114,30 @@ export const RANDOM_FACTS = {
 };
 
 // ============================================
+// QUOTES I LIKE
+// ============================================
+export const QUOTES = {
+  title: "Quotes I live by",
+  items: [
+    { 
+      emoji: "⚖️", 
+      quote: "There's no perfect way to live your 20s. You either live 'em up and become an under-skilled 30 year old. Or you work 'em up and become an under-lived 30 year old. You just have to figure out which you'd rather be, accept the tradeoffs, and know there are no do overs.", 
+      author: "Alex Hormozi" 
+    },
+    { 
+      emoji: "🥋", 
+      quote: "Because you might as well be dead. Seriously, if you always put limits on what you can do, physical or anything else, it'll spread over into the rest of your life. It'll spread into your work, into your morality, into your entire being. There are no limits. There are plateaus, but you must not stay there, you must go beyond them. If it kills you, it kills you. A man must constantly exceed his level.", 
+      author: "Bruce Lee" 
+    },
+    { 
+      emoji: "🔥", 
+      quote: "Figure out what you want, ignore the opinions of others, and do so much volume that it would be unreasonable that you would be unsuccessful.", 
+      author: "Alex Hormozi" 
+    },
+  ],
+};
+
+// ============================================
 // APPLICATION SECTION
 // ============================================
 export const APPLICATION = {

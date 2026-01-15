@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { INTRO, APPLICATION, CURRENTLY, RANDOM_FACTS } from '../config/content';
+import { INTRO, APPLICATION } from '../config/content';
 import SocialLinks from './SocialLinks';
 import AboutCard from './AboutCard';
 import InterestsSection from './InterestsSection';
 import CurrentlySection from './CurrentlySection';
 import RandomFactsSection from './RandomFactsSection';
+import QuotesSection from './QuotesSection';
 import ApplicationModal from './ApplicationModal';
 
 export default function MainPage() {
@@ -48,8 +49,13 @@ export default function MainPage() {
         </section>
 
         {/* Random Facts */}
-        <section className="mb-8">
+        <section className="mb-4">
           <RandomFactsSection />
+        </section>
+
+        {/* Quotes */}
+        <section className="mb-8">
+          <QuotesSection />
         </section>
 
         {/* Application Button */}
