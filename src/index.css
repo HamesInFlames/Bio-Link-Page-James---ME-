@@ -433,3 +433,41 @@ textarea.input {
 .explosion-particle:nth-child(6) { --tx: 18px; --ty: 18px; animation-delay: 0.6s; }
 .explosion-particle:nth-child(7) { --tx: 0px; --ty: -30px; animation-delay: 0.42s; }
 .explosion-particle:nth-child(8) { --tx: -30px; --ty: -10px; animation-delay: 0.48s; }
+
+/* Quotes modal - better mobile scrolling */
+.quotes-modal {
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+}
+
+.quotes-modal .sticky {
+  flex-shrink: 0;
+}
+
+.quotes-modal > div:last-child {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.quote-item {
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.quote-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+@media (max-width: 640px) {
+  .quotes-modal {
+    max-height: 85vh;
+    border-radius: 24px 24px 0 0;
+  }
+  
+  .quote-item p:first-child {
+    font-size: 14px;
+  }
+}

@@ -134,6 +134,31 @@ export const QUOTES = {
       quote: "Figure out what you want, ignore the opinions of others, and do so much volume that it would be unreasonable that you would be unsuccessful.", 
       author: "Alex Hormozi" 
     },
+    { 
+      emoji: "🔄", 
+      quote: "Every lesson you refuse to learn will repeat itself until you do.", 
+      author: "Unknown" 
+    },
+    { 
+      emoji: "💪", 
+      quote: "Whenever you feel negative or unhappy about anything, you say, 'Wait a minute. I'm responsible. I'm responsible for my life. I'm responsible for what happens. I can't change the past, so I'm not gonna spend a second worrying about the past. I'm gonna become so busy working on my future and my goals that I don't have time to think about the past.'", 
+      author: "Brian Tracy" 
+    },
+    { 
+      emoji: "📈", 
+      quote: "Everything changed the moment I began to think big. You will be paid in direct proportion to the value you deliver according to the marketplace.", 
+      author: "Brian Tracy" 
+    },
+    { 
+      emoji: "🎯", 
+      quote: "If you don't sacrifice for your dream, your dream becomes the sacrifice. Everything has a cost, and sometimes the cost of not pursuing something meaningful is higher than the cost of going after it. The tragedy for many is not that they aimed too high and fell short, but that they aimed too low and succeeded.", 
+      author: "Unknown" 
+    },
+    { 
+      emoji: "⏰", 
+      quote: "People are time wasters, and the great majority of people have no goals, they have no priorities, they have no plans, they have no concern about becoming successful, and they think that you're the same. They think because their time isn't worth anything that your time isn't worth anything also.", 
+      author: "Brian Tracy" 
+    },
   ],
 };
 

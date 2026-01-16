@@ -21,13 +21,14 @@ export default function QuotesSection() {
           className="modal-backdrop animate-fade-in-soft"
           onClick={(e) => e.target === e.currentTarget && setIsOpen(false)}
         >
-          <div className="modal-content">
+          <div className="modal-content quotes-modal">
             <div className="sm:hidden">
               <div className="handle" />
             </div>
             
-            <div className="p-6">
-              <div className="flex items-center justify-between mb-6">
+            {/* Fixed header */}
+            <div className="sticky top-0 bg-white px-6 pt-6 pb-4 border-b border-gray-100 z-10">
+              <div className="flex items-center justify-between">
                 <h2 className="text-xl font-semibold text-gray-800">
                   {QUOTES.title}
                 </h2>
@@ -39,14 +40,21 @@ export default function QuotesSection() {
                   {Icons.x}
                 </button>
               </div>
+            </div>
 
-              <ul className="space-y-5">
+            {/* Scrollable content */}
+            <div className="px-6 pb-6 overflow-y-auto">
+              <ul className="space-y-6 pt-4">
                 {QUOTES.items.map((item, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <span className="text-xl mt-1">{item.emoji}</span>
-                    <div>
-                      <p className="text-gray-800 italic">"{item.quote}"</p>
-                      <p className="text-gray-400 text-sm mt-1">— {item.author}</p>
+                  <li key={index} className="quote-item">
+                    <div className="flex gap-3">
+                      <span className="text-2xl flex-shrink-0">{item.emoji}</span>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-gray-700 text-[15px] leading-relaxed">
+                          "{item.quote}"
+                        </p>
+                        <p className="text-gray-400 text-sm mt-2">— {item.author}</p>
+                      </div>
                     </div>
                   </li>
                 ))}
