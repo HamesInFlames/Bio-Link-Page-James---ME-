@@ -7,8 +7,6 @@
   --color-text-soft: #6b7280;
   --color-accent: #3b82f6;
   --color-border: #e5e7eb;
-  --color-pink: #fdf2f8;
-  --color-pink-accent: #ec4899;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
@@ -63,20 +61,6 @@ body {
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes heartFloat {
-  0% { 
-    transform: translateY(0) scale(1); 
-    opacity: 0.6;
-  }
-  50% { 
-    opacity: 0.8;
-  }
-  100% { 
-    transform: translateY(-100vh) scale(0.5); 
-    opacity: 0;
-  }
 }
 
 .animate-fade-in {
@@ -204,10 +188,6 @@ body {
   border-color: var(--color-accent);
 }
 
-.input-pink:focus {
-  border-color: var(--color-pink-accent);
-}
-
 textarea.input {
   resize: vertical;
   min-height: 80px;
@@ -254,16 +234,6 @@ textarea.input {
   transform: translateY(-1px);
 }
 
-.btn-pink {
-  background: var(--color-pink-accent);
-  color: white;
-}
-
-.btn-pink:hover {
-  background: #db2777;
-  transform: translateY(-1px);
-}
-
 .btn-outline {
   background: transparent;
   border: 1px solid var(--color-border);
@@ -298,25 +268,6 @@ textarea.input {
 .checkbox.checked {
   background: var(--color-accent);
   border-color: var(--color-accent);
-}
-
-.checkbox.checked.pink {
-  background: var(--color-pink-accent);
-  border-color: var(--color-pink-accent);
-}
-
-/* Girlfriend mode background */
-.girlfriend-mode {
-  background: linear-gradient(180deg, #fdf2f8 0%, #fce7f3 100%);
-}
-
-/* Floating hearts */
-.heart {
-  position: fixed;
-  font-size: 20px;
-  pointer-events: none;
-  z-index: 0;
-  animation: heartFloat 8s linear forwards;
 }
 
 /* Modal */

@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { APPLICATION, FORM_CONFIG } from '../config/content';
 import { Icons } from './Icons';
-import FloatingHearts from './FloatingHearts';
 
 export default function ApplicationModal({ isOpen, onClose }) {
   const [step, setStep] = useState(0);
-  const [appType, setAppType] = useState(null); // 'friend' | 'girlfriend'
   const [friendType, setFriendType] = useState('');
   const [answers, setAnswers] = useState({});
   const [contact, setContact] = useState('');
@@ -14,29 +12,16 @@ export default function ApplicationModal({ isOpen, onClose }) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState(null);
 
-  const isGirlfriend = appType === 'girlfriend';
-  
   // Calculate total steps and progress
-  const getTotalSteps = () => {
-    if (!appType) return 1;
-    if (appType === 'friend') {
-      // Step 0: type select, Step 1: friend type, Step 2: dynamic Q, Steps 3-7: additional Qs, Step 8: contact
-      return 9;
-    } else {
-      // Step 0: type select, Step 1: love mode intro, Steps 2-9: 8 questions, Step 10: contact
-      return 11;
-    }
-  };
+  // Step 0: friend type, Step 1: dynamic Q, Steps 2-6: additional Qs, Step 7: contact
+  const totalSteps = 8;
 
   const getProgress = () => {
-    if (!appType) return 0;
-    const total = getTotalSteps();
-    return Math.round((step / (total - 1)) * 100);
+    return Math.round((step / (totalSteps - 1)) * 100);
   };
 
   const reset = () => {
     setStep(0);
-    setAppType(null);
     setFriendType('');
     setAnswers({});
     setContact('');
@@ -56,8 +41,8 @@ export default function ApplicationModal({ isOpen, onClose }) {
     
     // Prepare the data
     const formData = {
-      type: appType,
-      friendType: appType === 'friend' ? friendType : null,
+      type: 'friend',
+      friendType: friendType,
       answers: answers,
       contact: contact,
       consent: consent,
@@ -87,8 +72,8 @@ export default function ApplicationModal({ isOpen, onClose }) {
       const body = `
 NEW APPLICATION
 ===============
-Type: ${appType === 'girlfriend' ? '💗 Girlfriend' : '👋 Friend'}
-${appType === 'friend' ? `Friend Type: ${friendType}` : ''}
+Type: 👋 Friend
+Friend Type: ${friendType}
 
 ANSWERS
 -------
@@ -100,7 +85,7 @@ Email: ${contact}
 Consent to contact: ${consent ? 'Yes ✓' : 'No'}
       `.trim();
 
-      const subject = encodeURIComponent(`New ${appType} application 💌`);
+      const subject = encodeURIComponent(`New friend application 💌`);
       const mailBody = encodeURIComponent(body);
       window.open(`mailto:${FORM_CONFIG.fallbackEmail}?subject=${subject}&body=${mailBody}`, '_blank');
       setIsSubmitted(true);
@@ -113,11 +98,9 @@ Consent to contact: ${consent ? 'Yes ✓' : 'No'}
 
   return (
     <div 
-      className={`modal-backdrop animate-fade-in-soft ${isGirlfriend ? 'girlfriend-mode' : ''}`}
+      className="modal-backdrop animate-fade-in-soft"
       onClick={(e) => e.target === e.currentTarget && handleClose()}
     >
-      <FloatingHearts active={isGirlfriend && !isSubmitted} />
-      
       <div className="modal-content relative z-10">
         <div className="sm:hidden">
           <div className="handle" />
@@ -146,7 +129,7 @@ Consent to contact: ${consent ? 'Yes ✓' : 'No'}
           </div>
 
           {/* Progress bar */}
-          {appType && !isSubmitted && (
+          {!isSubmitted && (
             <div className="mb-6">
               <div className="flex items-center justify-between text-xs text-gray-400 mb-2">
                 <span>Progress</span>
@@ -154,7 +137,7 @@ Consent to contact: ${consent ? 'Yes ✓' : 'No'}
               </div>
               <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
                 <div 
-                  className={`h-full rounded-full transition-all duration-300 ${isGirlfriend ? 'bg-pink-400' : 'bg-gray-800'}`}
+                  className="h-full rounded-full transition-all duration-300 bg-gray-800"
                   style={{ width: `${getProgress()}%` }}
                 />
               </div>
@@ -163,33 +146,12 @@ Consent to contact: ${consent ? 'Yes ✓' : 'No'}
 
           {/* Content */}
           {isSubmitted ? (
-            <SuccessScreen type={appType} onClose={handleClose} />
-          ) : step === 0 ? (
-            <TypeSelection 
-              onSelect={(type) => {
-                setAppType(type);
-                setStep(1);
-              }}
-            />
-          ) : appType === 'friend' ? (
+            <SuccessScreen onClose={handleClose} />
+          ) : (
             <FriendApplication
               step={step}
               friendType={friendType}
               setFriendType={setFriendType}
-              answers={answers}
-              setAnswers={setAnswers}
-              contact={contact}
-              setContact={setContact}
-              consent={consent}
-              setConsent={setConsent}
-              onNext={() => setStep(step + 1)}
-              onSubmit={handleSubmit}
-              isSubmitting={isSubmitting}
-              submitError={submitError}
-            />
-          ) : (
-            <GirlfriendApplication
-              step={step}
               answers={answers}
               setAnswers={setAnswers}
               contact={contact}
@@ -208,30 +170,6 @@ Consent to contact: ${consent ? 'Yes ✓' : 'No'}
   );
 }
 
-// Step 0: Type Selection
-function TypeSelection({ onSelect }) {
-  return (
-    <div className="animate-fade-in">
-      <h2 className="text-xl font-semibold text-gray-800 mb-2">
-        {APPLICATION.typeQuestion}
-      </h2>
-      
-      <div className="space-y-3 mt-6">
-        {APPLICATION.types.map((type) => (
-          <button
-            key={type.id}
-            onClick={() => onSelect(type.id)}
-            className="card-btn flex items-center justify-between"
-          >
-            <span className="text-gray-800">{type.label}</span>
-            <span className="text-gray-400">→</span>
-          </button>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 // Friend Application Flow (8 questions total)
 function FriendApplication({ 
   step, friendType, setFriendType, answers, setAnswers,
@@ -240,8 +178,8 @@ function FriendApplication({
 }) {
   const config = APPLICATION.friend;
   
-  // Step 1: Friend type selection
-  if (step === 1) {
+  // Step 0: Friend type selection
+  if (step === 0) {
     return (
       <div className="animate-fade-in">
         <h2 className="text-xl font-semibold text-gray-800 mb-6">
@@ -270,8 +208,8 @@ function FriendApplication({
     );
   }
 
-  // Step 2: Dynamic question based on friend type
-  if (step === 2) {
+  // Step 1: Dynamic question based on friend type
+  if (step === 1) {
     const question = config.dynamicQuestions[friendType] || config.dynamicQuestions.all;
     return (
       <QuestionStep
@@ -284,8 +222,8 @@ function FriendApplication({
     );
   }
 
-  // Steps 3-7: Additional questions
-  const additionalQuestionIndex = step - 3;
+  // Steps 2-6: Additional questions
+  const additionalQuestionIndex = step - 2;
   if (additionalQuestionIndex < config.questions.length) {
     const question = config.questions[additionalQuestionIndex];
     return (
@@ -309,71 +247,12 @@ function FriendApplication({
       onSubmit={onSubmit}
       isSubmitting={isSubmitting}
       submitError={submitError}
-      isGirlfriend={false}
-    />
-  );
-}
-
-// Girlfriend Application Flow (8 questions)
-function GirlfriendApplication({
-  step, answers, setAnswers,
-  contact, setContact, consent, setConsent,
-  onNext, onSubmit, isSubmitting, submitError
-}) {
-  const config = APPLICATION.girlfriend;
-  const questions = config.questions;
-
-  // Step 1: Love mode intro
-  if (step === 1) {
-    return (
-      <div className="animate-fade-in text-center py-4">
-        <p className="text-pink-500 text-xl mb-4">
-          {APPLICATION.girlfriendModeMessage}
-        </p>
-        <p className="text-gray-600 mb-8">
-          {APPLICATION.girlfriendIntro}
-        </p>
-        <button onClick={onNext} className="btn btn-pink">
-          Let's go 💗
-        </button>
-      </div>
-    );
-  }
-
-  // Steps 2-9: The 8 questions
-  const questionIndex = step - 2;
-  if (questionIndex < questions.length) {
-    const q = questions[questionIndex];
-    return (
-      <QuestionStep
-        question={q.question}
-        value={answers[q.id] || ''}
-        onChange={(val) => setAnswers({ ...answers, [q.id]: val })}
-        onNext={onNext}
-        type={q.type}
-        note={q.note}
-        isGirlfriend={true}
-      />
-    );
-  }
-
-  // Final step: Contact info
-  return (
-    <ContactStep
-      contact={contact}
-      setContact={setContact}
-      consent={consent}
-      setConsent={setConsent}
-      onSubmit={onSubmit}
-      isSubmitting={isSubmitting}
-      submitError={submitError}
-      isGirlfriend={true}
     />
   );
 }
 
 // Reusable question step component
-function QuestionStep({ question, value, onChange, onNext, type = 'text', note, isGirlfriend = false }) {
+function QuestionStep({ question, value, onChange, onNext, type = 'text', note }) {
   return (
     <div className="animate-fade-in">
       <h2 className="text-xl font-semibold text-gray-800 mb-2">
@@ -387,7 +266,7 @@ function QuestionStep({ question, value, onChange, onNext, type = 'text', note, 
         <textarea
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className={`input mt-4 mb-6 ${isGirlfriend ? 'input-pink' : ''}`}
+          className="input mt-4 mb-6"
           placeholder="Your answer..."
           rows={3}
         />
@@ -396,7 +275,7 @@ function QuestionStep({ question, value, onChange, onNext, type = 'text', note, 
           type="text"
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className={`input mt-4 mb-6 ${isGirlfriend ? 'input-pink' : ''}`}
+          className="input mt-4 mb-6"
           placeholder="Your answer..."
         />
       )}
@@ -404,7 +283,7 @@ function QuestionStep({ question, value, onChange, onNext, type = 'text', note, 
       <button
         onClick={onNext}
         disabled={!value.trim()}
-        className={`btn w-full disabled:opacity-50 disabled:cursor-not-allowed ${isGirlfriend ? 'btn-pink' : 'btn-primary'}`}
+        className="btn w-full disabled:opacity-50 disabled:cursor-not-allowed btn-primary"
       >
         Next
       </button>
@@ -413,7 +292,7 @@ function QuestionStep({ question, value, onChange, onNext, type = 'text', note, 
 }
 
 // Contact Info Step
-function ContactStep({ contact, setContact, consent, setConsent, onSubmit, isSubmitting, submitError, isGirlfriend }) {
+function ContactStep({ contact, setContact, consent, setConsent, onSubmit, isSubmitting, submitError }) {
   const canSubmit = contact.trim() && consent;
   
   return (
@@ -426,13 +305,13 @@ function ContactStep({ contact, setContact, consent, setConsent, onSubmit, isSub
         type="email"
         value={contact}
         onChange={(e) => setContact(e.target.value)}
-        className={`input mb-6 ${isGirlfriend ? 'input-pink' : ''}`}
+        className="input mb-6"
         placeholder={APPLICATION.contactPlaceholder}
       />
 
       <label className="checkbox-wrapper mb-6 cursor-pointer">
         <div 
-          className={`checkbox ${consent ? 'checked' : ''} ${isGirlfriend && consent ? 'pink' : ''}`}
+          className={`checkbox ${consent ? 'checked' : ''}`}
           onClick={() => setConsent(!consent)}
         >
           {consent && <span className="text-white">{Icons.check}</span>}
@@ -449,7 +328,7 @@ function ContactStep({ contact, setContact, consent, setConsent, onSubmit, isSub
       <button
         onClick={onSubmit}
         disabled={!canSubmit || isSubmitting}
-        className={`btn w-full disabled:opacity-50 disabled:cursor-not-allowed ${isGirlfriend ? 'btn-pink' : 'btn-primary'}`}
+        className="btn w-full disabled:opacity-50 disabled:cursor-not-allowed btn-primary"
       >
         {isSubmitting ? 'Submitting...' : 'Submit'}
       </button>
@@ -458,16 +337,12 @@ function ContactStep({ contact, setContact, consent, setConsent, onSubmit, isSub
 }
 
 // Success Screen
-function SuccessScreen({ type, onClose }) {
-  const message = APPLICATION.successMessages[type];
-  
+function SuccessScreen({ onClose }) {
   return (
     <div className="text-center animate-fade-in success-pop py-8">
-      <div className="text-5xl mb-6">
-        {type === 'girlfriend' ? '💗' : '😌'}
-      </div>
+      <div className="text-5xl mb-6">😌</div>
       <p className="text-xl text-gray-800 mb-8">
-        {message}
+        {APPLICATION.successMessage}
       </p>
       <button onClick={onClose} className="btn btn-outline">
         Close

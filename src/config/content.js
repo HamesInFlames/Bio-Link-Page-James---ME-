@@ -167,17 +167,6 @@ export const QUOTES = {
 // ============================================
 export const APPLICATION = {
   buttonLabel: "Apply to be my friend",
-  
-  // Step 1: Type selection
-  typeQuestion: "What are you applying for?",
-  types: [
-    { id: "friend", label: "Friend" },
-    { id: "girlfriend", label: "Girlfriend" },
-  ],
-
-  // Girlfriend theme switch message
-  girlfriendModeMessage: "Okay… switching the mode 💗",
-  girlfriendIntro: "This is mostly a joke… but also kind of not.",
 
   // Friend application
   friend: {
@@ -213,63 +202,13 @@ export const APPLICATION = {
     ],
   },
 
-  // Girlfriend application (8 questions)
-  girlfriend: {
-    questions: [
-      {
-        id: "communicate",
-        question: "How do you usually communicate when something's wrong?",
-        type: "textarea",
-      },
-      {
-        id: "kindness",
-        question: "How do you show kindness?",
-        type: "textarea",
-      },
-      {
-        id: "maturity",
-        question: "What does emotional maturity mean to you?",
-        type: "textarea",
-      },
-      {
-        id: "quality_time",
-        question: "What does quality time look like to you?",
-        type: "textarea",
-      },
-      {
-        id: "love_language",
-        question: "What's your love language?",
-        type: "text",
-      },
-      {
-        id: "dealbreaker",
-        question: "What's a dealbreaker for you in a relationship?",
-        type: "textarea",
-      },
-      {
-        id: "three_words",
-        question: "Describe yourself in 3 words",
-        type: "text",
-      },
-      {
-        id: "hangry",
-        question: "How hangry do you get on a scale from 1–10?",
-        type: "text",
-        note: "just joking 😄",
-      },
-    ],
-  },
-
   // Contact info
   contactLabel: "What's your email?",
   contactPlaceholder: "your@email.com",
   consentLabel: "I'm okay with you contacting me back.",
 
-  // Success messages
-  successMessages: {
-    friend: "Application received. Friendship under review 😌",
-    girlfriend: "Application received 💗 No promises, but I'll read it.",
-  },
+  // Success message
+  successMessage: "Application received. Friendship under review 😌",
 };
 
 // ============================================
